@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+                    http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+        <!-- 使用构造函数注入属性-->
+        <bean class="com.ga.entity.User" id="user1">
+               <constructor-arg name="id" value="1"/>
+               <constructor-arg name="age" value="26"/>
+               <constructor-arg name="userName" value="aa"/>
+        </bean>
+
+        <!-- 使用set方法注入属性 -->
+        <bean class="com.ga.entity.User" id="user2">
+                <property name="id" value="2"/>
+                <property name="age" value="28"/>
+                <property name="userName" value="ga"/>
+        </bean>
+
+        <!--  静态工厂的方式注入 静态方法不需要对象 -->
+        <bean class="com.ga.entity.BookStaticFactory" factory-method="createBook" id="book1"/>
+
+        <!-- 实例工厂方法 要先有这个工厂对象 才可以调用到创建对象的方法 -->
+        <bean class="com.ga.entity.BookFactory" id="book2"/>
+
+        <bean class="com.ga.entity.Book" factory-bean="book2" id="book"/>
+
+</beans>
